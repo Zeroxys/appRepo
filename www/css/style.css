@@ -1,0 +1,26 @@
+.pane{
+	background-color:#e0f7fa;
+}
+
+.bar-green{
+	background-color:#00796B;
+}
+
+.button-blk{
+	color:black;
+}
+
+/*.my-container {
+    background-image:  url("http://www.planwallpaper.com/static/images/colorful-triangles-background_yB0qTG6.jpg");
+    background-repeat: repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    height: 100%;
+    position: absolute;
+}
+.transp .item-content {
+    background-color: transparent !important;
+    color: #fff;
+}
+*/
