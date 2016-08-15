@@ -68,7 +68,11 @@
 
       .state("app.iniciosesion",{
         url:"/login",
-        templateUrl:"templates/iniciosesion.html"
+        views:{
+          "menuContent":{
+            templateUrl:"templates/iniciosesion.html"
+          }
+        }
       })        
 
       .state('app.single', {
