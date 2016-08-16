@@ -2,13 +2,16 @@ angular.module('starter.controllers', ["ion-gallery"])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
   $scope.loginData = {};
+
   $ionicModal.fromTemplateUrl('templates/login.html', {
     scope: $scope
-  }).then(function(modal) {
+  })
+
+  .then(function(modal) {
     $scope.modal = modal;
   });
 
-  $scope.closeLogin = function() {
+  $scope.cerrarForm = function() {
     $scope.modal.hide();
   };
 
@@ -16,14 +19,43 @@ angular.module('starter.controllers', ["ion-gallery"])
     $scope.modal.show();
   };
 
-  $scope.doLogin = function() {
-    console.log('Doing login', $scope.loginData);
+  $scope.enviarForm = function() {
+    console.log('Enviando formulario', $scope.loginData);
 
     $timeout(function() {
-      $scope.closeLogin();
+      $scope.cerrarForm();
     }, 1000);
   };
 })
+
+.controller("loginController", function($scope,$ionicPopup,$timeout,$state){
+ 
+ $scope.crearCuentaPop = function() {
+  
+   var confirmPopup = $ionicPopup.confirm({
+    
+     title: 'Deseas registrarte?',
+     template: 'Seras redirigido hacia una nueva ventana de registro',
+
+   });
+
+   confirmPopup.then(function(res) {
+     if(res) {
+       console.log('El usuario esta seguro de ser redirigido');
+       $scope.modal.show()
+
+     } else {
+       console.log('El usuario no quiere ser redirigido');
+     }
+   });
+
+   $timeout(function(){
+      confirmPopup.close();
+    },(5000));
+  };
+
+})
+
 
 .controller("gallery", function($scope){
   $scope.items = [

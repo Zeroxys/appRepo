@@ -3,15 +3,12 @@
     text-align: center;
     margin-bottom: 25px;
 }
-e.css
-
-/*custom is class added to ion-content*/
 
 .custom {
-  background-color: #3f4041 !important; /* This sets the background color*/
+  background-color: #3f4041 !important; /* Cambia el color de fondo*/
  }
 
-/*Set the background to transparent for ion-item*/
+/*background de cada ion-item*/
 .custom .item {
   background-color: transparent;
   border:none;   /*Removes all borders*/
@@ -21,7 +18,7 @@ e.css
   color: white;    /*Text color for each item*/
 }
 
-/*Changes the border for the last item*/
+/*cambia el borde del ultimo item*/
 .custom .item:last-child {
   border-bottom: 1px solid #666;
 }
