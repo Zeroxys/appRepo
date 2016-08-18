@@ -1,34 +1,41 @@
 angular.module('starter.controllers', ["ion-gallery"])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
-  $scope.loginData = {};
-
+//controller de la creacion de un modal de usuario nuevo
+.controller("newUserCtrl", function($scope, $ionicModal) {
+  
+  //modal 1
   $ionicModal.fromTemplateUrl('templates/login.html', {
+    id:1,
     scope: $scope
-  })
+  }).then(function(modal) {
+      $scope.modal1 = modal;
+    });
 
-  .then(function(modal) {
-    $scope.modal = modal;
+  //modal 2
+  $ionicModal.fromTemplateUrl("templates/authSesion.html",{
+    id: 2,
+    scope: $scope
+  }).then(function(modal){
+    $scope.modal2 = modal;
   });
 
-  $scope.cerrarForm = function() {
-    $scope.modal.hide();
-  };
+  $scope.seleccion = function(index){
+    if(index === 1 ){
+      $scope.modal1.show();
+    }
+    else $scope.modal2.show();
+  }
 
-  $scope.login = function() {
-    $scope.modal.show();
-  };
-
-  $scope.enviarForm = function() {
-    console.log('Enviando formulario', $scope.loginData);
-
-    $timeout(function() {
-      $scope.cerrarForm();
-    }, 1000);
-  };
+  $scope.cerrar = function(index){
+    if(index === 1 ){
+      $scope.modal1.hide();
+    }
+    else $scope.modal2.hide();
+  }
 })
 
-.controller("loginController", function($scope,$ionicPopup,$timeout,$state){
+//controller del popup
+/*.controller("loginController", function($scope,$ionicPopup,$timeout){
  
  $scope.crearCuentaPop = function() {
   
@@ -41,11 +48,11 @@ angular.module('starter.controllers', ["ion-gallery"])
 
    confirmPopup.then(function(res) {
      if(res) {
-       console.log('El usuario esta seguro de ser redirigido');
-       $scope.modal.show()
+       $scope.modal1.login()
+       console.log('El usuario sera redirigido al modal');
 
      } else {
-       console.log('El usuario no quiere ser redirigido');
+       console.log('El usuario no sera redirigido');
      }
    });
 
@@ -54,9 +61,10 @@ angular.module('starter.controllers', ["ion-gallery"])
     },(5000));
   };
 
-})
+})*/
 
 
+//controller de la galeria de imagenes
 .controller("gallery", function($scope){
   $scope.items = [
     {

@@ -1,0 +1,21 @@
+<ion-modal-view>
+	<ion-header-bar>
+		<h1 class="title">Inicia sesión</h1>
+		<div class="buttons">
+			<button class="button" ng-click="cerrar(2)">Close</button>
+		</div>
+	</ion-header-bar>
+	<ion-content>
+        <label class="item item-input">
+          <span class="input-label">Nombre de usuario</span>
+          <input type="text" ng-model="loginData.username">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Contraseña</span>
+          <input type="password" ng-model="loginData.password">
+        </label>
+        <label class="item">
+          <button class="button button-block button-positive" type="submit" href="#">Iniciar Sesión</button>
+        </label>
+	</ion-content>
+</ion-modal-view>

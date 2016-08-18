@@ -1,19 +1,21 @@
 	<ion-content scroll="false">
 		<ion-view>
-		    <ion-content scroll="false" ng-controller="loginController">
+		    <ion-content scroll="false">
 		        <section class="login-container">
 		            <div class = "col header text-center">
 		               <img src="./img/ionic.png" class = "logo full-image" />
 		            </div>
 		            <br>
 		            <div class = "col button-row text-center">
-		               <img src="./img/facebook-button.png" ng-click="acceso()"/>
+		               <img src="./img/facebook-button.png"/>
 		            </div>
 		            <div class = "col button-row text-center">
 		               <img src="./img/email-button.png" />
 		            </div>
-		            <div class = "col text-center" ng-click="crearCuentaPop()">
-		                No tienes una cuenta? <strong><a href = "#">Crea una!</a></strong>
+		            <div class = "col text-center">
+		                No tienes una cuenta? <strong><a href="#" ng-click="seleccion(1)">Crea una!</a></strong>
+		                <br>
+		                Ya tienes una ? <strong><a href="#" ng-click="seleccion(2)">Inicia sesión</a></strong>
 		            </div>            
 		        </section>
 		    </ion-content>
