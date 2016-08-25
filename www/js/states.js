@@ -3,14 +3,20 @@
     angular.module("starter.states", [])
 
     .config(function($stateProvider, $urlRouterProvider) {
+     
       $stateProvider
+        .state("login",{
+          url:"/login",
+          templateUrl:"templates/iniciosesion.html",
+          controller: "newUserCtrl"
+        })       
 
         .state('app', {
         url: '/app',
         abstract: true,
-        templateUrl: 'templates/principal.html',
-        controller:"newUserCtrl"
+        templateUrl: 'templates/principal.html'
       })
+        
 
         .state('app.cafe', {
           url: '/cafe',
@@ -64,27 +70,9 @@
               templateUrl:"templates/postres.html"
             }
           }
-        })
-
-        .state("app.iniciosesion",{
-          url:"/login",
-          views:{
-            "menuContent":{
-              templateUrl:"templates/iniciosesion.html"
-            }
-          }
-        })       
-
-        .state('app.single', {
-          url: '/playlists/:playlistId',
-          views: {
-            'menuContent': {
-              templateUrl: 'templates/playlist.html',
-            }
-          }
         });
-
-        // if none of the above states are matched, use this as the fallback
-        $urlRouterProvider.otherwise('/app/login');
+        // Si ningun state coincide usa este
+        $urlRouterProvider.otherwise('/login');
+      
       });
 })();
