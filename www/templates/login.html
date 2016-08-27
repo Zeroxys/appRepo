@@ -5,23 +5,25 @@
       <button class="button" ng-click="cerrar(1)">Cerrar</button>
     </div>
   </ion-header-bar>
-  <ion-content>
-    <form ng-submit="register()">
-        <div class="list">
-          <label class="item item-input item-stacked-label">
-            <span class="input-label">Email</span>
-            <input type="email" placeholder="shabbat@mail.com" ng-model="user.email">
+  <ion-content ng-controller="AuthCtrl">
+    <form ng-submit="registro()">
+        <div>
+          <div class="list">
+            <label class="item item-input item-stacked-label">
+              <span class="input-label">Email</span>
+              <input type="email" placeholder="shabbat@mail.com" ng-model="user.email">
+            </label>
+            <label class="item item-input item-stacked-label">
+              <span class="input-label">Password</span>
+              <input type="password" placeholder="Contraseña" ng-model="user.password">
+            </label>          
+          </div>        
+          <label class="item">
+            <button class="button button-block button-positive" type="submit" href="#">Crear nueva cuenta</button>
           </label>
-          <label class="item item-input item-stacked-label">
-            <span class="input-label">Password</span>
-            <input type="password" placeholder="Contraseña" ng-model="user.password">
-          </label>          
-        </div>        
-        <label class="item">
-          <button class="button button-block button-positive" type="submit" href="#">Crear nueva cuenta</button>
-        </label>
+        </div>
+        <p>{{message}}</p>
       </div>
-      <div ng-show="mostrar_error">{{mostrar_error}}</div>
     </form>
   </ion-content>
 </ion-modal-view>

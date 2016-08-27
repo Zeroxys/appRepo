@@ -5,17 +5,20 @@
 			<button class="button" ng-click="cerrar(2)">Close</button>
 		</div>
 	</ion-header-bar>
-	<ion-content class="padding">
+	<ion-content class="padding" ng-controller="AuthCtrl">
+    <form ng-submit="loginAuth()">
         <label class="item item-input">
           <span class="input-label">Correo electronico</span>
-          <input type="text" ng-model="loginData.username">
+          <input type="text" ng-model="user.email">
         </label>
         <label class="item item-input">
           <span class="input-label">Contraseña</span>
-          <input type="password" ng-model="loginData.password">
+          <input type="password" ng-model="user.password">
         </label>
         <label class="item">
           <button class="button button-block button-positive" type="submit" href="#">Iniciar Sesión</button>
         </label>
+    </form>
+    <p>{{logmsg}}</p>    
 	</ion-content>
 </ion-modal-view>

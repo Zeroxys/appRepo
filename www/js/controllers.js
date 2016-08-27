@@ -1,24 +1,54 @@
 (function (){
   angular.module('starter.controllers', ["ion-gallery"])
 
-  //controller de la creacion de un modal y nuevo usuario
-  .controller("newUserCtrl",["$scope","$ionicModal","Auth", function($scope, $ionicModal,Auth) {
+  //Controllador del registro de usuarios en firebase
+  .controller("AuthCtrl", ["$scope","Auth","$location", function($scope,Auth,$location){
     $scope.user = {};
-
-    //Registro de usuarios email and password
-    $scope.register = function(){
+    
+    $scope.registro = function(){
       Auth.login($scope.user)
         //codigo de error
         .catch(function(error){
           var result = error.code;
-          if (result === "auth/email-alredy-in-use"){
-            AuthMessages.show_error("Este correo ya esta siendo utilizado");
+          $scope.message = error.message;
+
+          if (result === "auth/weak-password"){
+            console.log($scope.message);
+          }else if(result === "auth/email-already-in-use"){
+            console.log($scope.message);
+          }else if (result ==="auth/invalid-email"){
+            console.log($scope.message);
+          }else {
+            console.log($scope.message); 
           }
         });
     }
 
-    //Autenticando usuarios ya registrados
+    $scope.loginAuth = function(){
+      Auth.loginUser($scope.user)
+      //codigo de error
+        .catch(function(error){
+          var result = error.code;
+          $scope.logmsg = error.message;
 
+          if (result === "auth/invalid-email"){
+            console.log($scope.logmsg);
+          }else if( result === "auth/user-disabled"){
+            console.log($scope.logmsg); 
+          }else if ( result ==="auth/user-not-found"){
+            console.log($scope.logmsg);
+          }else if (result ==="auth/wrong-password"){
+            console.log($scope.logmsg); 
+          }else{
+            console.log($scope.logmsg);
+          }
+        })
+      return $location.path("/app/cafe");
+    }   
+  }])
+
+  //controller de la creacion de un modal
+  .controller("newUserCtrl",["$scope","$ionicModal", function($scope, $ionicModal) {
     //modal 1
     $ionicModal.fromTemplateUrl('templates/login.html', {
       id:1,
