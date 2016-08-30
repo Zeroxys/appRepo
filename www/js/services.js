@@ -7,12 +7,16 @@
 
     var service = {
     	
-      login: function(user){
+      registerUser: function(user){
     		return auth.createUserWithEmailAndPassword(user.email,user.password)
       },
 
       loginUser: function(user){
         return auth.signInWithEmailAndPassword(user.email,user.password)
+      },
+
+      userReset: function(mail){
+        return auth.sendPasswordResetEmail(mail.correo)
       },
     	user:{}
     }

@@ -2,49 +2,112 @@
   angular.module('starter.controllers', ["ion-gallery"])
 
   //Controllador del registro de usuarios en firebase
-  .controller("AuthCtrl", ["$scope","Auth","$location", function($scope,Auth,$location){
+  .controller("AuthCtrl", ["$scope","Auth","$location","$ionicPopup","$timeout", function($scope,Auth,$location,$ionicPopup,$timeout){
     $scope.user = {};
+    $scope.mail = {};
     
+    //Metodo de registro de usuarios
     $scope.registro = function(){
-      Auth.login($scope.user)
+      Auth.registerUser($scope.user)
+        
+        //Usuario registrado con exito
+        .then(function(result){
+          $scope.msgSuccess = $ionicPopup.alert({
+            title:"Registro exitoso" ,
+            template:"Usuario registrado con exito",
+          })
+        })
+
         //codigo de error
         .catch(function(error){
-          var result = error.code;
-          $scope.message = error.message;
-
-          if (result === "auth/weak-password"){
-            console.log($scope.message);
-          }else if(result === "auth/email-already-in-use"){
-            console.log($scope.message);
-          }else if (result ==="auth/invalid-email"){
-            console.log($scope.message);
-          }else {
-            console.log($scope.message); 
+          var message = error.code;
+          console.log(message);
+          if (message === "auth/email-already-in-use"){
+            message = "Este correo ya esta siendo utilizado";
+            console.log(message);
+          }else if (message === "auth/invalid-email"){
+            message = "Direccion de correo invalida";
+          }else if(message === "auth/operation-not-allowed"){
+            message ="El usuario ha sido desactivado";
+          }else if (message ==="auth/weak-password"){
+            message = "La contraseña debe contener 6 caracteres";
+          }else{
+            message = "Error interno, consulte al desarrolador";
           }
-        });
+          var msgError = $ionicPopup.alert({
+            title:"Error",
+            template: message
+          })
+            .then(function(res){
+              console.log(message);
+            });
+        })
     }
 
+    //Metodo de logueo de usuarios
     $scope.loginAuth = function(){
       Auth.loginUser($scope.user)
-      //codigo de error
-        .catch(function(error){
-          var result = error.code;
-          $scope.logmsg = error.message;
 
-          if (result === "auth/invalid-email"){
-            console.log($scope.logmsg);
-          }else if( result === "auth/user-disabled"){
-            console.log($scope.logmsg); 
-          }else if ( result ==="auth/user-not-found"){
-            console.log($scope.logmsg);
-          }else if (result ==="auth/wrong-password"){
-            console.log($scope.logmsg); 
-          }else{
-            console.log($scope.logmsg);
-          }
+      //Usuario registrado con exito
+      .then(function (authUser){
+        $scope.msgSuccess = $ionicPopup.alert({
+          title:"Bienvenido :)" ,
+          template:"Usuario autenticado con exito",
+        });        
+        $location.path("app/cafe");
+      })
+      //codigo de error
+      .catch(function(error){
+        var message = error.code;
+
+        if (message === "auth/invalid-email"){
+          message = "Direccion de correo no es valida";
+        }else if(message === "auth/user-disabled"){
+          message = "Cuenta desactivada";
+        }else if(message === "auth/user-not-found"){
+          message = "Usuario no encontrado";
+        }else if (message === "auth/wrong-password"){
+          message = "Vuelve a introducir tu contraseña";
+        }else{
+          message = "Error interno, consulta al desarrollador :(";
+        }
+        $scope.msgSuccess = $ionicPopup.alert({
+          title:"Error",
+          template:message,
+        });        
+      })
+    }
+
+    //Metodo restablecimiento contraseña
+    $scope.passReset = function(){
+      Auth.userReset($scope.mail)
+      
+      .then(function(result){
+        $scope.msgSuccess = $ionicPopup.alert({
+          title:"Enviado",
+          template:"Revisa tu bandeja de entrada" 
         })
-      return $location.path("/app/cafe");
-    }   
+      })
+
+      .catch(function(error){
+        var message = error.code;
+        if (message === "auth/invalid-email"){
+          message = "El correo es invalido"; 
+        }else if(message === "auth/user-not-found"){
+          message = "El correo no fue encontrado";
+        }
+        $scope.msgSuccess = $ionicPopup.alert({
+          title:"Error",
+          template:message,
+        });        
+      })        
+    }
+
+    //Metodo user listener
+    firebase.auth()
+      .onAuthStateChanged(function(firebaseUser){
+        console.log(firebaseUser.email)
+    })
   }])
 
   //controller de la creacion de un modal
@@ -65,20 +128,34 @@
       $scope.modal2 = modal;
     });
 
+    //modal 3
+    $ionicModal.fromTemplateUrl("templates/restablecer.html",{
+      id:3,
+      scope:$scope
+    }).then(function(modal){
+      $scope.modal3 = modal;
+    })
+
     //Metodo para abrir los modals
     $scope.seleccion = function(index){
       if(index === 1 ){
         $scope.modal1.show();
+      }else if(index === 2){
+        $scope.modal2.show();
+      } else{
+        $scope.modal3.show();
       }
-      else $scope.modal2.show();
     }
 
     //Metodo para cerrar los modals
     $scope.cerrar = function(index){
       if(index === 1 ){
         $scope.modal1.hide();
+      }else if(index === 2){
+        $scope.modal2.hide();
+      }else{
+        $scope.modal3.hide();
       }
-      else $scope.modal2.hide();
     }
 
   }])
