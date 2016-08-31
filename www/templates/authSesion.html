@@ -2,11 +2,11 @@
 	<ion-header-bar>
 		<h1 class="title">Inicia sesión</h1>
 		<div class="buttons">
-			<button class="button" ng-click="cerrar(2)">Close</button>
+			<button class="button button-assertive" ng-click="cerrar(2)">Close</button>
 		</div>
 	</ion-header-bar>
 	<ion-content class="padding" ng-controller="AuthCtrl">
-    <form ng-submit="loginAuth()">
+    <form ng-submit="listener()">
         <label class="item item-input">
           <span class="input-label">Correo electronico</span>
           <input type="text" ng-model="user.email">
@@ -16,7 +16,7 @@
           <input type="password" ng-model="user.password">
         </label>
         <label class="item">
-          <button class="button button-block button-positive" type="submit" href="#" >Iniciar Sesión</button>
+          <button class="button button-block button-positive"  ng-click="loginAuth()" >Iniciar Sesión</button>
         </label>
     </form>    
 	</ion-content>

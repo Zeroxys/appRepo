@@ -18,6 +18,9 @@
       userReset: function(mail){
         return auth.sendPasswordResetEmail(mail.correo)
       },
+      logOut: function(mail){
+        return auth.signOut();
+      },
     	user:{}
     }
     return service;

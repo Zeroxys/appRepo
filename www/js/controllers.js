@@ -47,14 +47,14 @@
     //Metodo de logueo de usuarios
     $scope.loginAuth = function(){
       Auth.loginUser($scope.user)
-
       //Usuario registrado con exito
       .then(function (authUser){
+        console.log("Autenticacion exitosa")
         $scope.msgSuccess = $ionicPopup.alert({
-          title:"Bienvenido :)" ,
-          template:"Usuario autenticado con exito",
-        });        
-        $location.path("app/cafe");
+          title:"Bienvenido",
+          template:"Inicio de sesión exitoso",
+        });
+        $scope.user="";                
       })
       //codigo de error
       .catch(function(error){
@@ -104,10 +104,22 @@
     }
 
     //Metodo user listener
-    firebase.auth()
-      .onAuthStateChanged(function(firebaseUser){
-        console.log(firebaseUser.email)
-    })
+    $scope.listener = function(){
+      firebase.auth()
+      .onAuthStateChanged(function(FirebaseUser){
+        console.log(FirebaseUser);
+        if (FirebaseUser){
+          $location.path("/app/cafe");
+        }else{
+          $location.path("/login");
+        }
+      })
+    }    
+
+    //Cerrar la sesion activa
+    $scope.logOut=function(){
+       firebase.auth().signOut()        
+    }
   }])
 
   //controller de la creacion de un modal
