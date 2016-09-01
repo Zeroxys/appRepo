@@ -1,23 +1,24 @@
+	<script>
+    var video = document.getElementById("video-bg");
+    video.addEventListener("canplay", function() {
+        video.play();
+    });		
+	</script>
 	<ion-content scroll="false">
 		<ion-view>
-		    <ion-content scroll="false">
-		        <section class="login-container">
-		            <div class = "col header text-center">
-		               <img src="./img/ionic.png" class = "logo full-image" />
-		            </div>
-		            <br>
-		            <div class = "col button-row text-center">
-		               <img src="./img/facebook-button.png"/>
-		            </div>
-		            <div class = "col button-row text-center">
-		               <img src="./img/email-button.png" type="submit" ng-click="seleccion(2)" />
-		            </div>
-		            <div class = "col text-center">
-		                No tienes una cuenta? <strong><a href="#" ng-click="seleccion(1)">Crea una!</a></strong>
-		                <br>
-		                Olvide mi contraseña <strong><a href="#" ng-click="seleccion(3)">Restablecer</a></strong>
-		            </div>            
-		        </section>
-		    </ion-content>
+					<div class="video">
+						
+						<img class="logo" src="img/ionic.png">
+
+						<div class="contenido">
+							<p>Bienvenido</p>
+							<button class="button button-assertive">Inicia sesion</button>
+						</div>
+
+						<video id="video-bg" autoplay webkit-playsinline loop >
+							<source src="video/coffee.mp4" type="video/mp4"/>
+							<source src="video/coffee.webm" type="video/webm"/>
+						</video>
+					</div>
 		</ion-view>
 	</ion-content>
