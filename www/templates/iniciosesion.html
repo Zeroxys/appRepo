@@ -1,18 +1,13 @@
-	<script>
-    var video = document.getElementById("video-bg");
-    video.addEventListener("canplay", function() {
-        video.play();
-    });		
-	</script>
 	<ion-content scroll="false">
-		<ion-view>
-					<div class="video">
+		<ion-view ng-controller="AuthCtrl">
+					<div class="video" ng-controller="newUserCtrl" >
 						
 						<img class="logo" src="img/ionic.png">
 
 						<div class="contenido">
-							<p>Bienvenido</p>
-							<button class="button button-assertive">Inicia sesion</button>
+							<p><strong>Bienvenido</strong></p>
+							<button class="button button-positive">Facebook</button>
+							<button class="button button-assertive" ng-click="seleccion(1)">Inicia sesion</button>
 						</div>
 
 						<video id="video-bg" autoplay webkit-playsinline loop >
