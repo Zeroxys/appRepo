@@ -1,6 +1,11 @@
 (function (){
   angular.module('starter.controllers', ["ion-gallery"])
 
+  //Controlador de datos
+  .controller("DataCtrl", ["database", function(database){
+    
+    database.db()
+  }])
   //Controllador del registro de usuarios en firebase
   .controller("AuthCtrl", ["$scope","Auth","$location","$ionicPopup","$timeout", function($scope,Auth,$location,$ionicPopup,$timeout){
     $scope.user = {};

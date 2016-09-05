@@ -63,6 +63,15 @@
           }
         })
 
+        .state("app.carrito",{
+          url:"/carrito",
+          views:{
+            "menuContent":{
+              templateUrl:"templates/carrito.html"
+            }
+          }
+        })
+
         .state("app.postres",{
           url:"/postres",
           views:{
