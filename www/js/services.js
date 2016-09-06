@@ -9,10 +9,9 @@
     
     var service = {
       db : function(){
-        var data = obj.$loaded().then(function(){
-            console.log("Abriendo el objeto:", obj);
+            var data = obj.$loaded().then(function(){
+            console.log("Abriendo el objeto:", obj.ShabbatDb);
           });
-        return data;
       }
     }
 
@@ -36,6 +35,18 @@
 
       userReset: function(mail){
         return auth.sendPasswordResetEmail(mail.correo)
+      },
+
+      listener: function(user){
+        return auth.onAuthStateChanged(user);
+      },
+      
+      mailVerification : function(){
+        return auth.currentUser.sendEmailVerification()
+      },
+
+      cerrarSesion : function(){
+        return auth.signOut();
       },
     	user:{}
     }

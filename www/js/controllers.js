@@ -3,9 +3,9 @@
 
   //Controlador de datos
   .controller("DataCtrl", ["database", function(database){
-    
-    database.db()
+    var dato = database.db()
   }])
+
   //Controllador del registro de usuarios en firebase
   .controller("AuthCtrl", ["$scope","Auth","$location","$ionicPopup","$timeout", function($scope,Auth,$location,$ionicPopup,$timeout){
     $scope.user = {};
@@ -17,6 +17,7 @@
         
         //Usuario registrado con exito
         .then(function(result){
+          Auth.mailVerification();
           $scope.msgSuccess = $ionicPopup.alert({
             title:"Registro exitoso" ,
             template:"Usuario registrado con exito",
@@ -37,7 +38,7 @@
           }else if (message ==="auth/weak-password"){
             message = "La contraseña debe contener 6 caracteres";
           }else{
-            message = "Error interno, consulte al desarrolador";
+            message = "Error interno, consulte al desarrollador";
           }
           var msgError = $ionicPopup.alert({
             title:"Error",
@@ -56,11 +57,15 @@
       //Usuario registrado con exito
       .then(function (authUser){
         $scope.msgSuccess = $ionicPopup.alert({
-          title:"Bienvenido :)" ,
+          title:"Bienvenido :)",
           template:"Usuario autenticado con exito",
         });        
+        Auth.listener(function(firebaseUser){
+          console.log(firebaseUser.email)
+        })
         $location.path("app/cafe");
       })
+
       //codigo de error
       .catch(function(error){
         var message = error.code;
@@ -108,11 +113,16 @@
       })        
     }
 
-    //Metodo user listener
-    firebase.auth()
-      .onAuthStateChanged(function(firebaseUser){
-        console.log(firebaseUser.email)
-    })
+
+  //Metodo para cerrar la sesion activa
+  $scope.cerrarSesion = function(firebaseUser){
+    Auth.cerrarSesion()
+    .then(function(){
+      $location.path("/login");
+      console.log("El usuario ha cerrado sesion");
+    });
+  }  
+
   }])
 
   //controller de la creacion de un modal
