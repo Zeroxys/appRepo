@@ -3,18 +3,18 @@
   angular.module("starter.services", ["firebase"])
 
   //Servicio de base de datos
-  .factory("database",["firebase","$firebaseObject", function($firebase,$firebaseObject){
-    var ref = firebase.database().ref();
-    var obj = $firebaseObject(ref);
-    
+  .factory("database",["firebase","$firebaseObject","$q", function($firebase,$firebaseObject,$q){
+
+    var db = firebase.database();
+
     var service = {
-      db : function(){
-            var data = obj.$loaded().then(function(){
-            console.log("Abriendo el objeto:", obj.ShabbatDb);
-          });
+
+      dataRef : function(data1,data2){
+        var ref = db.ref()
+        var refObj = $firebaseObject(ref.child(data1).child(data2)); 
+        return refObj;
       }
     }
-
     return service;
 
   }])

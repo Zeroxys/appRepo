@@ -2,8 +2,20 @@
   angular.module('starter.controllers', ["ion-gallery"])
 
   //Controlador de datos
-  .controller("DataCtrl", ["database", function(database){
-    var dato = database.db()
+  .controller("DataCtrl", ["database","$scope", function(database,$scope){
+   
+   var route = "data";
+   var cafe = "cafe";
+   var frios = "frios";
+   var comidas = "comidas";
+   var postres =  "postres"
+
+    $scope.cafeData =  database.dataRef(route,cafe);
+    $scope.frioData = database.dataRef(route,frios);
+    $scope.comidasData = database.dataRef(route,comidas);
+    $scope.postresData = database.dataRef(route,postres);
+    console.log($scope.cafeData)
+
   }])
 
   //Controllador del registro de usuarios en firebase

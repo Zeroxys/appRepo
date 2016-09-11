@@ -1,64 +1,25 @@
 <ion-view view-title="Tés, Frappés, Helados y más">
   <ion-content>
-    <div class="list card">
-      <div class="list card">
-        <div class="item item-divider">
-          <span>Té 1 </span>
-          <p>Té por exelencia</p>
+    <div ng-controller = "DataCtrl">
+      <div ng-repeat="items in frioData" class="list card">
+        <div class="list card">
+        
+          <div class="item item-divider">
+            <span>{{items.Nombre}}</span>
+            <p>{{items.Categoria}}</p>
+          </div> 
+          <div class="item item-body">
+            <img class="full-image" ng-src="{{items.Img}}">
+              <p>
+                {{items.Descripcion}}
+              </p>
+          </div>
         </div>
-        <div class="item item-body">
-          <img class="full-image" src="img/tea.jpg">
-            <p>
-              This is a "Facebook" styled Card. The header is created from a Thumbnail List item,
-              the content is from a card-body consisting of an image and paragraph text. The footer
-              consists of tabs, icons aligned left, within the card-footer.
-            </p> 
-        </div>
+        <button class="button button-positive"> 
+        <i class="ion-android-add-circle"></i>
+        {{items.Precio}}
+        </button>      
       </div>
-      <div class="list card">
-        <div class="item item-divider">
-          <span>Té 1 </span>
-          <p>Té por exelencia</p>
-        </div>
-        <div class="item item-body">
-          <img class="full-image" src="img/tea.jpg">
-            <p>
-              This is a "Facebook" styled Card. The header is created from a Thumbnail List item,
-              the content is from a card-body consisting of an image and paragraph text. The footer
-              consists of tabs, icons aligned left, within the card-footer.
-            </p>
-        </div>
-      </div>
-
-      <div class="list card">
-        <div class="item item-divider">
-          <span>Té 1 </span>
-          <p>Té por exelencia</p>
-        </div>  
-        <div class="item item-body">
-          <img class="full-image" src="img/tea.jpg">
-            <p>
-              This is a "Facebook" styled Card. The header is created from a Thumbnail List item,
-              the content is from a card-body consisting of an image and paragraph text. The footer
-              consists of tabs, icons aligned left, within the card-footer.
-            </p>
-        </div>
-      </div>
-
-      <div class="list card">
-        <div class="item item-divider">
-          <span>Té 1 </span>
-          <p>Té por exelencia</p>
-        </div>  
-        <div class="item item-body">
-          <img class="full-image" src="img/tea.jpg">
-            <p>
-              This is a "Facebook" styled Card. The header is created from a Thumbnail List item,
-              the content is from a card-body consisting of an image and paragraph text. The footer
-              consists of tabs, icons aligned left, within the card-footer.
-            </p>
-        </div>
-      </div>    
-    </div>
+    </div>  
   </ion-content>
 </ion-view>
