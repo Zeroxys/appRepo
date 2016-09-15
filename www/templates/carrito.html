@@ -1,12 +1,31 @@
-<ion-view view-title="Carrito de compras">
-	<ion-content>
-		<table>
-			<thead>
-				<tr>Producto</tr>
-				<tr>Cantidad</tr>
-				<tr>Precio</tr>
-				<tr>Total</tr>
-			</thead>
-		</table>
-	</ion-content>
+<ion-view style="" class=" " id="page9" title="Carrito">
+    <ion-content padding="false" ng-controller="DataCtrl">
+    	<div class="container">
+	    	<div class="productos">
+		       <div class="row header">
+					<div class="col">Cantidad</div>
+					<div class="col">Producto</div>
+					<div class="col">Precio</div>
+					<div class="col">Total</div>
+					<div class="col">Accion</div>
+		        </div>
+	        </div>
+	        			
+			<div class="items" ng-repeat="showItems in showShopping">
+		        <div class="row">
+		        	<div class="col">
+		        		<input class="input" type="text">
+		        	</div>
+		        	<div class="col">{{showItems.p.Nombre}}</div>
+		        	<div class="col">${{showItems.p.Precio}}</div>
+		        	<div class="col">${{showItems.p.Precio}}</div>
+		        	<div class="col">
+		    			<button class="remove button icon ion-minus-circled button-assertive"></button>
+		    		</div>   	
+		        </div>
+	        </div>
+        </div>
+        	<p ng-hide="showButton()">El usuario todavia no ha agregado productos</p>
+	        <button ng-show="showButton()" class="buy button icon-left ion-card button-positive">Comprar</button>
+    </ion-content>
 </ion-view>

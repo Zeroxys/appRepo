@@ -3,7 +3,6 @@
 
   //Controlador de datos
   .controller("DataCtrl", ["database","$scope", function(database,$scope){
-   
    var route = "data";
    var cafe = "cafe";
    var frios = "frios";
@@ -14,8 +13,18 @@
     $scope.frioData = database.dataRef(route,frios);
     $scope.comidasData = database.dataRef(route,comidas);
     $scope.postresData = database.dataRef(route,postres);
-    console.log($scope.cafeData)
+    
+    $scope.showShopping  =  database.showProduct();
 
+    $scope.addProducto = function(p){
+      database.addProduct(p);
+      console.log("producto agregado " + p.Nombre +" "+ p.Precio);
+    }
+
+    $scope.showButton = function(){
+      button = database.actionButton();
+      return button;
+    }
   }])
 
   //Controllador del registro de usuarios en firebase

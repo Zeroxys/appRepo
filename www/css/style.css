@@ -84,6 +84,61 @@
     padding-top: 20px;
 }
 
+/*-----------------Shopping cart css--------------------------*/
+
+.productos{
+  display: block;
+}
+
+.productos .row{
+  color:white;
+  padding: 15px;
+  margin: 0px;
+  background-color: #3F4041;
+}
+
+.productos .row .col{
+  padding: 0px;
+  margin: 0px;
+  text-align: center;
+}
+
+.items .row{
+  padding: 0px;
+  margin: 0px;
+  border: 1px solid silver;
+}
+
+.items .row .col{
+  border-left: 1px solid silver;
+  padding: 10px;
+  margin: 0px;
+  text-align: center;
+}
+
+.items .row .col .input{
+  color:red;
+  width: 40px;
+  background: lightgrey;
+}
+
+.items .row .col .remove{
+  width: 10px;
+}
+
+.container{
+  width:100%; 
+  border:1px solid black;
+  position: relative;
+}
+
+.buy{
+  position: absolute;
+  padding: 0.5em 3em;
+  margin: 1em 25%;
+}
+
+
 /*.my-container {
     background-image:  url("http://www.planwallpaper.com/static/images/colorful-triangles-background_yB0qTG6.jpg");
     background-repeat: repeat;
