@@ -14,13 +14,13 @@
 			<div class="items" ng-repeat="showItems in showShopping">
 		        <div class="row">
 		        	<div class="col">
-		        		<input class="input" type="text">
+		        		<input class="input" type="text" value="{{showItems.p.Cantidad}}">
 		        	</div>
 		        	<div class="col">{{showItems.p.Nombre}}</div>
 		        	<div class="col">${{showItems.p.Precio}}</div>
-		        	<div class="col">${{showItems.p.Precio}}</div>
+		        	<div class="col">${{showItems.p.Precio * showItems.p.Cantidad}}</div>
 		        	<div class="col">
-		    			<button class="remove button icon ion-minus-circled button-assertive"></button>
+		    			<button class="remove button icon ion-minus-circled button-assertive" ng-click="deleteProduct(showItems)"></button>
 		    		</div>   	
 		        </div>
 	        </div>

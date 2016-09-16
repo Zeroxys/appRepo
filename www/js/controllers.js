@@ -18,12 +18,16 @@
 
     $scope.addProducto = function(p){
       database.addProduct(p);
-      console.log("producto agregado " + p.Nombre +" "+ p.Precio);
+      console.log("Nombre producto: " + p.Nombre +" Precio: "+ p.Precio + " N. Id: " + p.Id + " Cantidad " + p.Cantidad);
     }
 
     $scope.showButton = function(){
       button = database.actionButton();
       return button;
+    }
+
+    $scope.deleteProduct = function(item){
+      database.deleteItem(item);
     }
   }])
 

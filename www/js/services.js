@@ -9,6 +9,16 @@
     var boton = productos;
     var db = firebase.database();
 
+    //Filtrado de Id
+    var productoFiltro = function(Id){
+        for(var i = 0 ; i < productos.length ; i++){
+          if (productos[i].p.Id == Id){
+            return productos[i];
+          }
+        };
+        return null
+      }    
+
     var service = {
 
       dataRef : function(data1,data2){
@@ -17,30 +27,22 @@
         return refObj;
       },
 
-      addProduct: function(p){
-          var idAdd = p.Id;
-          var tamanyo =  productos.length;
+      addProduct : function(p){
+        var productoFiltrado = productoFiltro(p.Id); //Llamamos a la funcion para filtrar el Id
 
-          for(i = 0 ; i < tamanyo; i++){
-            if (tamanyo === 0){
-              productos.push({p});
-            }else{
-              if(idAdd != productos.Id)
-              {
-                  productos.push({p});
-              }
-              else
-              {
-                  productos.Cantidad++;
-              }
-            }
-          console.log(tamanyo);
-          }
-          return productos;          
+        if (!productoFiltrado){
+          productos.push({p})          
+        }else{
+          p.Cantidad++;
+        }
       },
 
       showProduct : function(){
         return productos;
+      },
+
+      deleteItem : function(item){
+        productos.splice(productos.indexOf(item),1);
       },
 
       actionButton:function(){
