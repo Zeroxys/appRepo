@@ -1,9 +1,9 @@
 <ion-view view-title="Cafés">
   <ion-content>
+
     <div ng-controller = "DataCtrl">
       <div ng-repeat="items in cafeData" class="list card">
-        <div class="list card">
-        
+        <div class="list card">        
           <div class="item item-divider">
             <span>{{items.Nombre}}</span>
             <p>{{items.Categoria}}</p>
@@ -15,12 +15,16 @@
               </p>
           </div>
         </div>
-        <input type="text" ng-model="items.Cantidad">
-        <button class="button button-positive" ng-click="addProducto(items)"> 
-        <i class="ion-android-add-circle"></i>
-        $ {{items.Precio}}
-        </button>  
+        <div class="row">
+          <div class="col text-center">
+            <button class="button button-positive" ng-click="addProducto(items)"> 
+            <i class="ion-android-add-circle"></i>
+            ${{items.Precio}} Agregar
+            </button>
+          </div>
+        </div>  
       </div>
-    </div>  
+    </div>
+
   </ion-content>
 </ion-view>

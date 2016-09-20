@@ -86,10 +86,6 @@
 
 /*-----------------Shopping cart css--------------------------*/
 
-.productos{
-  display: block;
-}
-
 .productos .row{
   color:white;
   padding: 15px;
@@ -111,14 +107,14 @@
 
 .items .row .col{
   border-left: 1px solid silver;
-  padding: 10px;
+  padding: 0px;
   margin: 0px;
   text-align: center;
 }
 
-.items .row .col .input{
+.container .items .row .text{
   color:red;
-  width: 40px;
+  width: 15px;
   background: lightgrey;
 }
 
@@ -126,17 +122,14 @@
   width: 10px;
 }
 
-.container{
-  width:100%; 
-  border:1px solid black;
-  position: relative;
-}
 
+/*
 .buy{
   position: absolute;
   padding: 0.5em 3em;
   margin: 1em 25%;
 }
+*/
 
 
 /*.my-container {

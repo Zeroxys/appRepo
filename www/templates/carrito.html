@@ -1,31 +1,33 @@
 <ion-view style="" class=" " id="page9" title="Carrito">
     <ion-content padding="false" ng-controller="DataCtrl">
+
     	<div class="container">
 	    	<div class="productos">
-		       <div class="row header">
+		       <div class="row">
 					<div class="col">Cantidad</div>
 					<div class="col">Producto</div>
 					<div class="col">Precio</div>
 					<div class="col">Total</div>
-					<div class="col">Accion</div>
+					<div class="col">Acción</div>
 		        </div>
-	        </div>
-	        			
+	        </div>    			
 			<div class="items" ng-repeat="showItems in showShopping">
 		        <div class="row">
-		        	<div class="col">
-		        		<input class="input" type="text" value="{{showItems.p.Cantidad}}">
-		        	</div>
+	        		<input class="text col " type="text" ng-model="showItems.Cantidad">
 		        	<div class="col">{{showItems.p.Nombre}}</div>
 		        	<div class="col">${{showItems.p.Precio}}</div>
-		        	<div class="col">${{showItems.p.Precio * showItems.p.Cantidad}}</div>
+		        	<div class="col">${{showItems.Cantidad * showItems.p.Precio}}</div>
 		        	<div class="col">
 		    			<button class="remove button icon ion-minus-circled button-assertive" ng-click="deleteProduct(showItems)"></button>
 		    		</div>   	
 		        </div>
 	        </div>
         </div>
-        	<p ng-hide="showButton()">El usuario todavia no ha agregado productos</p>
-	        <button ng-show="showButton()" class="buy button icon-left ion-card button-positive">Comprar</button>
+        	<div class="row">
+        		<div class="col text-center">
+		        	<i ng-hide="showButton()" class="ion-alert-circled"><strong> El usuario todavia no ha agregado productos</strong></i>      	
+			        <button ng-show="showButton()" class="buy button icon-left ion-card button-positive">Comprar</button>
+		        </div>
+	        </div>
     </ion-content>
 </ion-view>

@@ -31,9 +31,14 @@
         var productoFiltrado = productoFiltro(p.Id); //Llamamos a la funcion para filtrar el Id
 
         if (!productoFiltrado){
-          productos.push({p})          
+          productos.push({
+          
+            p, 
+            Cantidad : 1
+
+          })                    
         }else{
-          p.Cantidad++;
+          productoFiltrado.Cantidad++
         }
       },
 
