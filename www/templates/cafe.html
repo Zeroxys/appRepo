@@ -1,8 +1,9 @@
 <ion-view view-title="Cafés">
-  <ion-content>
+
+  <ion-content class="fondo transparent">
 
     <div ng-controller = "DataCtrl">
-      <div ng-repeat="items in cafeData" class="list card">
+      <div ng-repeat="items in cafeData" class="list card transparent">
         <div class="list card">        
           <div class="item item-divider">
             <span>{{items.Nombre}}</span>
@@ -27,4 +28,5 @@
     </div>
 
   </ion-content>
+
 </ion-view>

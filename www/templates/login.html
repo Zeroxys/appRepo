@@ -1,28 +1,28 @@
-<ion-modal-view>
-  <ion-header-bar>
-    <h1 class="title">Registrate</h1>
-    <div class="buttons">
-      <button class="button" ng-click="cerrar(1)">Cerrar</button>
-    </div>
+<ion-modal-view class="transparent">
+
+  <ion-header-bar class="transparent">
+    <h1 class="title titulo">Registrate</h1>
+      <button class="button button-assertive" ng-click="cerrar(1)">Cerrar</button>
   </ion-header-bar>
-  <ion-content ng-controller="AuthCtrl">
-    <form ng-submit="registro()">
-        <div>
-          <div class="list">
-            <label class="item item-input item-stacked-label">
+
+  <ion-content class="padding" ng-controller="AuthCtrl">
+
+    <form ng-submit="registro(user)">
+            <label class="item item-input">
               <span class="input-label">Email</span>
-              <input type="email" placeholder="shabbat@mail.com" ng-model="user.email">
+              <input type="email" placeholder="shabbat@mail.com" ng-model="user.email" autofocus>
             </label>
-            <label class="item item-input item-stacked-label">
+            <label class="item item-input">
               <span class="input-label">Password</span>
               <input type="password" placeholder="Contraseña" ng-model="user.password">
-            </label>          
-          </div>        
+            </label>                  
           <label class="item">
             <button class="button button-block button-positive" type="submit" href="#">Crear nueva cuenta</button>
           </label>
         </div>
       </div>      
     </form>
+
   </ion-content>
+
 </ion-modal-view>

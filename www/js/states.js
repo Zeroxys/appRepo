@@ -79,6 +79,15 @@
               templateUrl:"templates/postres.html"
             }
           }
+        })
+
+        .state("app.comprar",{
+          url:"/comprar",
+          views:{
+            "menuContent":{
+              templateUrl:"templates/comprar.html"
+            }
+          }
         });
         // Si ningun state coincide usa este
         $urlRouterProvider.otherwise('/login');

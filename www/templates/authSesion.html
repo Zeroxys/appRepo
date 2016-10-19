@@ -1,15 +1,17 @@
-<ion-modal-view>
-	<ion-header-bar>
-		<h1 class="title">Inicia sesión</h1>
-		<div class="buttons">
-			<button class="button" ng-click="cerrar(2)">Close</button>
-		</div>
+<ion-modal-view class="transparent">
+
+	<ion-header-bar class="transparent">
+      <h1 class="title titulo">Iniciar Sesión</h1>
+			<button class="button button-assertive" ng-click="cerrar(2)">Close</button>
 	</ion-header-bar>
-	<ion-content class="padding" ng-controller="AuthCtrl">
-    <form ng-submit="loginAuth()">
+
+	<ion-content class="padding " ng-controller="AuthCtrl">
+
+    <form ng-submit="loginAuth(user)">
+
         <label class="item item-input">
           <span class="input-label">Correo electronico</span>
-          <input type="text" ng-model="user.email">
+          <input type="text" ng-model="user.email" autofocus>
         </label>
         <label class="item item-input">
           <span class="input-label">Contraseña</span>
@@ -18,6 +20,9 @@
         <label class="item">
           <button class="button button-block button-positive" type="submit" href="#" >Iniciar Sesión</button>
         </label>
+
     </form>    
+
 	</ion-content>
+
 </ion-modal-view>

@@ -1,7 +1,7 @@
 <ion-view style="" class=" " id="page9" title="Carrito">
-    <ion-content padding="false" ng-controller="DataCtrl">
+    <ion-content class="fondo" padding="false" ng-controller="DataCtrl">
 
-    	<div class="container">
+    	<div class="container padding">
 	    	<div class="productos">
 		       <div class="row">
 					<div class="col">Cantidad</div>
@@ -10,23 +10,32 @@
 					<div class="col">Total</div>
 					<div class="col">Acción</div>
 		        </div>
-	        </div>    			
+	        </div>
 			<div class="items" ng-repeat="showItems in showShopping">
 		        <div class="row">
-	        		<input class="text col " type="text" ng-model="showItems.Cantidad">
+	        		<input class="text col" type="number" ng-model="showItems.Cantidad" >
 		        	<div class="col">{{showItems.p.Nombre}}</div>
 		        	<div class="col">${{showItems.p.Precio}}</div>
-		        	<div class="col">${{showItems.Cantidad * showItems.p.Precio}}</div>
+		        	<div class="col">${{mostrarTotal(showItems.Cantidad,showItems.p.Precio)}}</div>
 		        	<div class="col">
 		    			<button class="remove button icon ion-minus-circled button-assertive" ng-click="deleteProduct(showItems)"></button>
-		    		</div>   	
+		    		</div>
 		        </div>
 	        </div>
         </div>
         	<div class="row">
-        		<div class="col text-center">
-		        	<i ng-hide="showButton()" class="ion-alert-circled"><strong> El usuario todavia no ha agregado productos</strong></i>      	
-			        <button ng-show="showButton()" class="buy button icon-left ion-card button-positive">Comprar</button>
+
+        		<div class="col text-center alerta">
+		        	<i ng-hide="showButton()" class="ion-alert-circled icono"><strong> El usuario todavia no ha agregado productos</strong></i>
+
+		        	<div class="total" ng-show="showButton()" ng-controller="pagosCtrl">
+		        		<div class="row productos">
+		        			<div class="col col-20">Total :</div>
+		        			<div class="col col-offset-20">$ {{totalProduct(showItems)}}</div>
+		        		</div>
+			        	<button class="buy button icon-left ion-card button-positive" ng-click="comprarClick()">Comprar</button>
+			        </div>
+
 		        </div>
 	        </div>
     </ion-content>

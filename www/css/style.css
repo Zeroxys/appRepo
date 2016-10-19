@@ -67,12 +67,16 @@
   color: white;  /*Text color for each item, overrides the color property above*/
 }
 
+
+/*-----------------Login css-------------------------------------------------------*/
+
 .login-container {
     display: -webkit-flex;
     -webkit-flex-direction: column;
     height: 100%;
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#efad62), color-stop(100%,#f7d47c));
-    background: -webkit-linear-gradient(top, #efad62 0%,#f7d47c 100%);
+  background-image:url("http://img.wallpaperfolder.com/f/529F88EFECBB/top-10-best-coffee-effective-design.jpg");
+  background-color: #lightgrey;
+  background-size: cover;
 }
 
 .login-container > .button-row img {
@@ -84,6 +88,13 @@
     padding-top: 20px;
 }
 
+.login-container .adicional{
+  color: white;
+}
+
+.login-container .adicional a{
+  text-decoration: none;
+}
 /*-----------------Shopping cart css--------------------------*/
 
 .productos .row{
@@ -113,15 +124,305 @@
 }
 
 .container .items .row .text{
-  color:red;
-  width: 15px;
-  background: lightgrey;
+  color:white;
+  width: 25px;
+  padding: 0;
+  border-bottom: solid 2px #0099e5;
 }
 
 .items .row .col .remove{
   width: 10px;
 }
 
+.total .row {
+  border: 2px solid lightgrey;
+}
+
+.total button{
+  margin: 10px;
+}
+
+.total{
+  font-weight: bold;
+  font-size: 17px;
+}
+.container .col{
+  font-weight: bold;
+}
+
+.container .row{
+  margin:.5em auto;
+}
+
+.text{
+  background: transparent;
+}
+
+.alerta{
+  color: #ce1126;
+  font-size: 16px
+}
+/*-----------------------Modal view-------------------------------------------*/
+
+.titulo {
+  color: lightgrey;
+}
+
+.transparent{
+    background:rgb(0,0,0);  
+    background: transparent\9;  
+    background:rgba(0,0,0,0.4); 
+}
+
+
+/*---------------------------Plantillas---------------------------------------------------------*/
+.fondo{
+  background-image:url("../img/wood2.jpg");
+  background-size: cover;
+}
+
+/*------------------------Tarjeta de crédito aceptadas-----------------------------------------------------*/
+
+@media(max-width:742px){
+
+  .tarjetas{
+    margin:10px;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 15px;
+  }
+
+  .tarjeta1{
+    padding-bottom:10px;
+    border-bottom:solid 2px lightgrey;
+    width: 100%;
+  }
+
+  .tarjeta1 p{
+    text-align: center;
+  }
+
+  .tarjeta1 img{
+    width: 200px;
+    height: auto;
+    margin: auto;
+    display: block;
+  }
+
+  .tarjeta2{
+    margin-top: 10px;
+  }
+
+  .tarjeta2 p{
+    text-align: center;
+  }
+
+  .tarjeta2 img{
+    margin:auto;
+    padding: auto;
+    display: block;
+  }
+}
+
+@media (min-width: 743px){
+
+  .tarjetas{
+    width: 100%;
+    margin:10px 0 10px 0;
+    padding: 0px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .tarjeta1{
+    width: 50%;
+    display: inline-block;
+    border-right: solid 2px lightgrey;   
+  }
+
+  .tarjeta1 p{
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .tarjeta1 img{
+    margin:auto;
+    padding: auto;
+    display: block;
+    width: auto;
+  }
+
+  .tarjeta2{
+    width: 45%; 
+    display: inline-block;
+  }
+
+  .tarjeta2 p{
+    text-align: center;
+  }
+
+  .tarjeta2 img{
+    margin: auto;
+    padding: auto; 
+    display: block;
+    width: auto;
+  }
+  
+}
+/*-----------------Formulario de pagos-----------------------*/
+@media (max-width: 742px){
+
+
+.form{
+  width: 100%;
+  background-color:#3F4041;
+  background: transparent;
+  font-weight: bold;
+  margin:auto;
+  padding:10px;
+  color: white;
+}
+
+  .form label{
+    font-size: 25px;
+    display:inline-block;
+    padding: 0px;
+    margin: 0px;
+    width: 25px;
+  }
+
+  .form input{
+    font-size: 18px;
+    width: 80%;
+    padding: 0px;
+    margin-bottom:8px;
+    display: inline-block;
+    border-radius: 4px; 
+    background: transparent;
+    border-bottom: solid 1px lightgrey;
+    font-weight: bold;
+    color: black;
+    text-align: center;
+  }
+  
+  .form ::-webkit-input-placeholder{
+    color:black;
+  }
+
+  .centrar{
+    display: block;
+    text-align: center;
+    margin:25px;
+  }
+
+  .centrar .exp_year{
+    width: 42%;
+    display: inline-block;
+  }
+
+  .separador{
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+  }
+
+  .centrar .exp_month{
+    width: 45%;
+    display: inline-block;
+  }
+
+  .form .centrar_btn{
+    margin: 45px auto;
+    padding: auto;
+    display: block;
+  }
+  
+  .form .cvv{
+    width: 200px;
+    height: auto;
+    display: block;
+    margin: 10px auto;
+    padding: auto;
+  }
+
+}
+
+@media(min-width:743px){
+
+  .form{
+    padding:15px;
+    background-color:#C2C2F7;
+    background: transparent;
+    margin:auto;
+    width: 800px;
+    font-weight: bold;
+    color: black;
+  }
+
+  .form label{
+    font-size: 25px;
+    display:inline-block;
+    padding: 0px;
+    margin: 0px;
+    width: 25px;
+  }
+
+  .form input{
+    font-size: 18px;
+    width: 80%;
+    padding: 0px;
+    margin-bottom:8px;
+    display: inline-block;
+    border-radius: 4px; 
+    background: transparent;
+    border-bottom: solid 1px lightgrey;
+    font-weight: bold;
+    color: black;
+    text-align: center;
+  }
+  
+  .form ::-webkit-input-placeholder{
+    color:black;
+  }
+
+  .centrar{
+    display: block;
+    text-align: center;
+    margin:25px;
+  }
+
+  .centrar .exp_year{
+    width: 42%;
+    display: inline-block;
+  }
+
+  .separador{
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+  }
+
+  .centrar .exp_month{
+    width: 45%;
+    display: inline-block;
+  }
+
+  .form .centrar_btn{
+    margin: 45px auto;
+    padding: auto;
+    display: block;
+  }
+  
+  .form .cvv{
+    width: 200px;
+    height: auto;
+    display: block;
+    margin: 10px auto;
+    padding: auto;
+  }
+
+}
+/*--------------------Carrito de compras---------------------*/
 
 /*
 .buy{

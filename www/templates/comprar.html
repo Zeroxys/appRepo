@@ -1,0 +1,69 @@
+<ion-view view-title="Comprar" class="padding">
+  <ion-content class="fondo" ng-controller="pagosCtrl">
+
+    <div class="tarjetas">
+
+      <div class= "tarjeta1">
+          <p>Tarjetas de crédito</p>
+          <img src="img/cards1.png">
+      </div>
+
+      <div class="tarjeta2">
+          <p>Tarjetas de débito</p>
+          <img src="img/cards2.png">
+      </div>
+
+    </div>
+
+    <form id="payment-form"  class="form" method="POST" action="#">
+
+        <input type="hidden" name="token_id" id="token_id">
+        <input type="hidden" name="use_card_points" id="use_card_points" value="false">
+
+        <div class="centrar">
+          <label for="nombre" class="icon ion-person"></label>
+          <input id="nombre" placeholder="Introduce tu nombre" data-openpay-card="holder_name" size="50" type="text">
+        </div>
+
+        <div class="centrar">
+          <label for="t_number" class="icon ion-card"></label>
+          <input id="t_number" placeholder="Numero de tarjeta" data-openpay-card="card_number" size="50" type="text">
+        </div>
+
+        <div class="centrar">
+          <div class="exp_year">
+            <label for="a_exp" class="icon ion-calendar"></label>
+            <input id="a_exp" placeholder="Año de expiración" data-openpay-card="expiration_year" size="4" type="text">
+          </div>
+
+          <div class="exp_month">
+            <label id="mes_exp"></label>
+            <input id="mes_exp" placeholder="Mes de expiracion" data-openpay-card="expiration_month" size="4" type="text">
+          </div>
+        </div>
+
+
+        <div class="centrar">
+          <img src="img/cvv.png"  class="cvv">
+          <label for="security" class="icon ion-locked"></label>
+          <input id="security" placeholder="Codigo de seguridad(3 digitos)" data-openpay-card="cvv2" size="5" type="text">
+        </div>
+
+        <input class="centrar_btn button button-positive" id="pay-button" type="button" value="Crear Tarjeta">
+
+    </form>
+
+    <div class="tarjetas">
+      <div class="tarjeta1">
+        <p>Transacciones realizadas vía:</p>
+        <img src="img/openpay.png">
+      </div>
+
+      <div class="tarjeta2">
+        <p>Tus pagos se realizan de forma segura con encriptacion de 256bits</p>
+        <img src="img/security.png">
+      </div>
+    </div>
+
+  </ion-content>
+</ion-view>

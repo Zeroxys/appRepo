@@ -12,7 +12,7 @@
     <ion-nav-view name="menuContent"></ion-nav-view>
   </ion-side-menu-content>
 
-  <ion-side-menu side="left">
+  <ion-side-menu side="left" class="transparent">
     <ion-header-bar class="bar-stable">
       <h1 class="title">Menu</h1>
     </ion-header-bar>
@@ -39,7 +39,7 @@
           Promociones
         </ion-item>
         <ion-item menu-close href="#/app/carrito">
-          <i class="ion-ios-cart"></i>
+          <i class="ion-ios-cart"><span ng-controller="DataCtrl" class="badge badge-positive">{{badge()}}</span></i>
           Carrito
         </ion-item>                        
         <ion-item menu-close href="#/app/about">

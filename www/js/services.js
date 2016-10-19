@@ -31,15 +31,26 @@
         var productoFiltrado = productoFiltro(p.Id); //Llamamos a la funcion para filtrar el Id
 
         if (!productoFiltrado){
-          productos.push({
-          
-            p, 
-            Cantidad : 1
-
-          })                    
+          productos.push({p,Cantidad :1})
+                    
         }else{
           productoFiltrado.Cantidad++
         }
+      },
+
+      total : function(p){
+        var total = 0;
+        var regExp = /^\d*$/;
+
+        angular.forEach(productos, function(p){
+
+          if (regExp.test(p.Cantidad)){                
+            total = total + (p.Cantidad * p.p.Precio);
+            return total;
+          }
+        })
+
+        return total;
       },
 
       showProduct : function(){
@@ -48,6 +59,11 @@
 
       deleteItem : function(item){
         productos.splice(productos.indexOf(item),1);
+      },
+
+      badgeNum: function(){
+        x = productos.length;
+        return x;
       },
 
       actionButton:function(){
@@ -74,7 +90,7 @@
       },
 
       loginUser: function(user){
-        return auth.signInWithEmailAndPassword(user.email,user.password)
+          return auth.signInWithEmailAndPassword(user.email,user.password)
       },
 
       userReset: function(mail){
