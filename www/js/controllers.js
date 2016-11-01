@@ -2,7 +2,42 @@
   angular.module('starter.controllers', ["ion-gallery"])
 
   //Controllador de pagos
-  .controller("pagosCtrl", ["$scope","$state","$ionicPopup", function($scope,$state,$ionicPopup){
+  .controller("pagosCtrl", ["$scope","$state","$ionicPopup","$http", function($scope,$state,$ionicPopup,$http){
+
+      $scope.url = "http://zuleykiara.com.mx/pay/pay.php";
+      var data = {};
+      $scope.envioPhp = function(frm){
+
+alert('hola entro');
+              data ={
+                        token_id : $scope.frm.token_id,
+                        deviceIdHiddenFieldName : $scope.frm.deviceIdHiddenFieldName,
+                        name: $scope.frm.name,
+                        last_name: $scope.frm.last_name,
+                        phone_number: $scope.frm.phone_number,
+                        description : $scope.frm.description,
+                        amount : $scope.frm.amount,
+                        email : $scope.frm.email,
+                        holder_name : $scope.frm.holder_name,
+                        card_number : $scope.frm.card_number,
+                        expiration_year : $scope.frm.expiration_year,
+                        expiration_month : $scope.frm.expiration_month
+                      }
+console.log(data);
+
+
+
+                $http.post($scope.url,data).
+                        success(function(data, status) {
+                            console.log(data);
+                            alert("Todo salio bien chidoliro");
+
+                        }).error(function(error,status,headers, config)
+          {
+            console.log(error);
+            alert("No salio chidoliro");
+          });
+    };
 
     //Deteccion de fraudes
     var deviceSessionId = OpenPay.deviceData.setup("payment-form", "deviceIdHiddenFieldName");
@@ -17,10 +52,15 @@
     var success_callback = function(response){
       var token_id = response.data.id;
       $("#token_id").val(token_id);
-      console.log("Operacion exitosa, se genero el token " +  token_id)
-      $('#payment-form').submit(function(){
-        console.log("pagando")
-      })
+      $("#deviceIdHiddenFieldName").val(deviceSessionId);
+      console.log(token_id);
+      console.log("Operacion exitosa, se genero el token " +  token_id);
+      //console.log("Este es el segundo data: ",data);
+      //var envio = $scope.envioPhp();
+      //console.log(envio);
+      alert(token_id);
+      $('#payment-form').submit("asdsad");
+      alert("perate chingao xD");
     };
 
     //calback de error

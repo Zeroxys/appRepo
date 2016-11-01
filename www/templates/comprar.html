@@ -15,30 +15,61 @@
 
     </div>
 
-    <form id="payment-form"  class="form" method="POST" action="#">
+    <form id="payment-form" name="payment-form" class="form" >
 
-        <input type="hidden" name="token_id" id="token_id">
+        <input type="hidden" name="token_id" ng-model="frm.token_id" id="token_id">
+        <input type="hidden" name="deviceIdHiddenFieldName" ng-model="frm.deviceIdHiddenFieldName" id="deviceIdHiddenFieldName">
         <input type="hidden" name="use_card_points" id="use_card_points" value="false">
 
         <div class="centrar">
           <label for="nombre" class="icon ion-person"></label>
-          <input id="nombre" placeholder="Introduce tu nombre" data-openpay-card="holder_name" size="50" type="text">
+          <input id="nombre" placeholder="Nombre(s)" ng-model="frm.name" data-openpay-card="name" size="50" type="text">
+        </div>
+
+        <div class="centrar">
+          <label for="nombre" class="icon ion-person"></label>
+          <input id="nombre" placeholder="Apellidos" ng-model="frm.last_name" data-openpay-card="last_name" size="50" type="text">
+        </div>
+
+        <div class="centrar">
+          <label for="nombre" class="icon ion-person"></label>
+          <input id="nombre" placeholder="Telefono" ng-model="frm.phone_number" data-openpay-card="phone_number" size="50" type="text">
+        </div>
+
+        <div class="centrar">
+          <label for="nombre" class="icon ion-person"></label>
+          <input id="nombre" placeholder="Descripción" ng-model="frm.description" data-openpay-card="description" size="50" type="text">
+        </div>
+
+        <div class="centrar">
+          <label for="nombre" class="icon ion-person"></label>
+          <input id="nombre" placeholder="Importe" ng-model="frm.amount" data-openpay-card="amount" size="50" type="text">
+        </div>
+
+        <div class="centrar">
+          <label for="nombre" class="icon ion-person"></label>
+          <input id="nombre" placeholder="Email" ng-model="frm.email" data-openpay-card="email" size="50" type="text">
+        </div>
+
+        <div class="centrar">
+          <label for="nombre" class="icon ion-person"></label>
+          <input id="nombre" placeholder="Nombre del titular" ng-model="frm.holder_name"  data-openpay-card="holder_name" size="50" type="text">
         </div>
 
         <div class="centrar">
           <label for="t_number" class="icon ion-card"></label>
-          <input id="t_number" placeholder="Numero de tarjeta" data-openpay-card="card_number" size="50" type="text">
+          <input id="t_number" placeholder="Numero de tarjeta" ng-model="frm.card_number" data-openpay-card="card_number" size="50" type="text">
         </div>
 
         <div class="centrar">
           <div class="exp_year">
             <label for="a_exp" class="icon ion-calendar"></label>
-            <input id="a_exp" placeholder="Año de expiración" data-openpay-card="expiration_year" size="4" type="text">
+            <input id="a_exp" placeholder="Año de expiración" ng-model="frm.expiration_year" data-openpay-card="expiration_year" size="4" type="text">
           </div>
 
           <div class="exp_month">
             <label id="mes_exp"></label>
-            <input id="mes_exp" placeholder="Mes de expiracion" data-openpay-card="expiration_month" size="4" type="text">
+            <input id="mes_exp" placeholder="Mes de expiracion" ng-model="frm.expiration_month" data-openpay-card="expiration_month" size="4" type="text">
           </div>
         </div>
 
@@ -46,10 +77,12 @@
         <div class="centrar">
           <img src="img/cvv.png"  class="cvv">
           <label for="security" class="icon ion-locked"></label>
-          <input id="security" placeholder="Codigo de seguridad(3 digitos)" data-openpay-card="cvv2" size="5" type="text">
+          <input id="security" placeholder="Codigo de seguridad(3 digitos)" ng-model="frm.cvv2" data-openpay-card="cvv2" size="5" type="text">
         </div>
 
-        <input class="centrar_btn button button-positive" id="pay-button" type="button" value="Crear Tarjeta">
+        <!--<button class="centrar_btn button button-positive" id="pay-button" type="submit" value="Crear Tarjeta">-->
+
+          <button type="submit" id="pay-button" class="centrar_btn button button-positive" ng-click="envioPhp(frm)" >Crear Tarjeta</button>
 
     </form>
 
