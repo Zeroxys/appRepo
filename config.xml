@@ -2,13 +2,15 @@
 <widget id="com.ionicframework.app776331" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>app</name>
     <description>
-        An Ionic Framework and Cordova project.
+        Project for Shabbat Coffee House
     </description>
-    <author email="you@example.com" href="http://example.com.com/">
-      Your Name Here
+    <author email="miguelzavalac@gmail.com" href="http://example.com.com/">
+      Miguel Angel Zavala
     </author>
     <content src="index.html" />
-    <access origin="*" />
+
+    <access origin="https://shabbatcoffee.herokuapp.com" />
+
     <preference name="webviewbounce" value="false" />
     <preference name="UIWebViewBounce" value="false" />
     <preference name="DisallowOverscroll" value="true" />

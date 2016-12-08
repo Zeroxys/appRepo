@@ -2,46 +2,46 @@
   angular.module('starter.controllers', ["ion-gallery"])
 
   //Controllador de pagos
-  .controller("pagosCtrl", ["$scope","$state","$ionicPopup","$http", function($scope,$state,$ionicPopup,$http){
-
-      $scope.url = "http://zuleykiara.com.mx/pay/pay.php";
-      var data = {};
-      $scope.envioPhp = function(frm){
-
-alert('hola entro');
-              data ={
-                        token_id : $scope.frm.token_id,
-                        deviceIdHiddenFieldName : $scope.frm.deviceIdHiddenFieldName,
-                        name: $scope.frm.name,
-                        last_name: $scope.frm.last_name,
-                        phone_number: $scope.frm.phone_number,
-                        description : $scope.frm.description,
-                        amount : $scope.frm.amount,
-                        email : $scope.frm.email,
-                        holder_name : $scope.frm.holder_name,
-                        card_number : $scope.frm.card_number,
-                        expiration_year : $scope.frm.expiration_year,
-                        expiration_month : $scope.frm.expiration_month
-                      }
-console.log(data);
-
-
-
-                $http.post($scope.url,data).
-                        success(function(data, status) {
-                            console.log(data);
-                            alert("Todo salio bien chidoliro");
-
-                        }).error(function(error,status,headers, config)
-          {
-            console.log(error);
-            alert("No salio chidoliro");
-          });
-    };
-
+  .controller("pagosCtrl", ["$scope","$state","$ionicPopup","$http","chargesUrl", function($scope,$state,$ionicPopup,$http,chargesUrl){
+    
     //Deteccion de fraudes
     var deviceSessionId = OpenPay.deviceData.setup("payment-form", "deviceIdHiddenFieldName");
     console.log("Este es el id del dispositivo :" + deviceSessionId)
+
+    var url = chargesUrl.url
+    var data = {};
+
+    $scope.envioDatos = function(frm){
+
+      data ={
+        source_id : $scope.frm.token_id,
+        method:'card',
+        amount : $scope.frm.amount,
+        description : $scope.frm.description,
+        device_session_id : $scope.frm.deviceIdHiddenFieldName,
+        customer:{
+          name: $scope.frm.name,
+          last_name: $scope.frm.last_name,
+          phone_number: $scope.frm.phone_number,
+          email : $scope.frm.email,
+          holder_name : $scope.frm.holder_name,
+          card_number : $scope.frm.card_number,
+          expiration_year : $scope.frm.expiration_year,
+          expiration_month : $scope.frm.expiration_month          
+        }
+      }
+
+      $http.post(url,data).
+        success(function(data, status) {
+          if (status === 200){
+            console.log("La informacion ha sido enviada correctamente al server "+ status)
+            console.log(data)            
+          }
+        }).error(function(error){
+            console.log("Ocurrio un error al mandar la peticion al server" + error);
+        });
+    };
+
 
     //Redirige al formulario de captura de tarjeta
     $scope.comprarClick = function(){
@@ -53,14 +53,9 @@ console.log(data);
       var token_id = response.data.id;
       $("#token_id").val(token_id);
       $("#deviceIdHiddenFieldName").val(deviceSessionId);
-      console.log(token_id);
       console.log("Operacion exitosa, se genero el token " +  token_id);
-      //console.log("Este es el segundo data: ",data);
-      //var envio = $scope.envioPhp();
-      //console.log(envio);
-      alert(token_id);
+      console.log("Se genero el siguiente token : " + token_id);
       $('#payment-form').submit("asdsad");
-      alert("perate chingao xD");
     };
 
     //calback de error

@@ -1,6 +1,10 @@
 (function (){
 	angular.module('starter', ['ionic', 'starter.controllers',"starter.states","starter.services"])
 
+  .constant('chargesUrl', {
+    url: 'http://localhost:8080/charges'
+  })
+
 	.run(function($ionicPlatform) {
 	  $ionicPlatform.ready(function() {
 	    if (window.cordova && window.cordova.plugins.Keyboard) {
