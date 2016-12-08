@@ -7,73 +7,72 @@
     //Deteccion de fraudes
     var deviceSessionId = OpenPay.deviceData.setup("payment-form", "deviceIdHiddenFieldName");
     console.log("Este es el id del dispositivo :" + deviceSessionId)
-
     var url = chargesUrl.url
-    var data = {};
-
-    $scope.envioDatos = function(frm){
-
-      data ={
-        source_id : $scope.frm.token_id,
-        method:'card',
-        amount : $scope.frm.amount,
-        description : $scope.frm.description,
-        device_session_id : $scope.frm.deviceIdHiddenFieldName,
-        customer:{
-          name: $scope.frm.name,
-          last_name: $scope.frm.last_name,
-          phone_number: $scope.frm.phone_number,
-          email : $scope.frm.email,
-          holder_name : $scope.frm.holder_name,
-          card_number : $scope.frm.card_number,
-          expiration_year : $scope.frm.expiration_year,
-          expiration_month : $scope.frm.expiration_month          
-        }
-      }
-
-      $http.post(url,data).
-        success(function(data, status) {
-          if (status === 200){
-            console.log("La informacion ha sido enviada correctamente al server "+ status)
-            console.log(data)            
-          }
-        }).error(function(error){
-            console.log("Ocurrio un error al mandar la peticion al server" + error);
-        });
-    };
-
 
     //Redirige al formulario de captura de tarjeta
-    $scope.comprarClick = function(){
-      $state.go("app.comprar")
-    }
+    $scope.envioDatos = function(frm){
+      var data ={
+          source_id : $scope.frm.token_id,
+          method:'card',
+          amount : $scope.frm.amount,
+          description : $scope.frm.description,
+          device_session_id : deviceSessionId,
+          customer:{
+            name: $scope.frm.name,
+            last_name: $scope.frm.last_name,
+            phone_number: $scope.frm.phone_number,
+            email : $scope.frm.email,
+            holder_name : $scope.frm.holder_name,
+            card_number : $scope.frm.card_number,
+            expiration_year : $scope.frm.expiration_year,
+            expiration_month : $scope.frm.expiration_month          
+          }
+        }
 
-    //callback de exito y realizacion de cargos
-    var success_callback = function(response){
-      var token_id = response.data.id;
-      $("#token_id").val(token_id);
-      $("#deviceIdHiddenFieldName").val(deviceSessionId);
-      console.log("Operacion exitosa, se genero el token " +  token_id);
-      console.log("Se genero el siguiente token : " + token_id);
-      $('#payment-form').submit("asdsad");
+        $scope.comprarClick = function(){
+          $state.go("app.comprar")
+        }
+
+      //Al dar click en el buton submit, realiza el "tokenize de la tarjeta"
+      //Creacion del token
+      $('#pay-button').on('click', function(event) {
+        event.preventDefault();
+        $("#pay-button").prop( "disabled", true);
+        OpenPay.token.extractFormAndCreate('payment-form', success_callback, error_callback);
+      });
+
+      //callback de exito y realizacion de cargos
+      var success_callback = function(response){
+        var token_id = response.data.id;
+        $("#token_id").val(token_id);
+        $("#deviceIdHiddenFieldName").val(deviceSessionId);
+        console.log("Operacion exitosa, se genero el token " +  token_id);
+        console.log("Se genero el siguiente token : " + token_id);
+        $('#payment-form').submit("asdsad");
+
+
+        $http.post(url,data).
+          success(function(data, status) {
+            if (status === 200){
+              console.log("La informacion ha sido enviada correctamente al server "+ status)
+              console.log(data)            
+            }
+          }).error(function(error){
+              console.log("Ocurrio un error al mandar la peticion al server" + error);
+          });        
+      };
+
+      //calback de error
+      var error_callback = function(response){
+          var alertPop = $ionicPopup.alert({
+            title:"Error",
+            template:"Los siguientes campos son requeridos " + response.data.description
+          })
+        console.log(response.data)
+        $("#pay-button").prop("disabled",false);
+      };
+
     };
-
-    //calback de error
-    var error_callback = function(response){
-        var alertPop = $ionicPopup.alert({
-          title:"Error",
-          template:"Los siguientes campos son requeridos " + response.data.description
-        })
-      console.log(response.data)
-      $("#pay-button").prop("disabled",false);
-    };
-
-    //Creacion del token
-    $('#pay-button').on('click', function(event) {
-           event.preventDefault();
-           $("#pay-button").prop( "disabled", true);
-           OpenPay.token.extractFormAndCreate('payment-form', success_callback, error_callback);
-    });
 
   }])
 
