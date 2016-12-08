@@ -9,29 +9,12 @@
     console.log("Este es el id del dispositivo :" + deviceSessionId)
     var url = chargesUrl.url
 
+    $scope.comprarClick = function(){
+        $state.go("app.comprar")
+      }
+
     //Redirige al formulario de captura de tarjeta
     $scope.envioDatos = function(frm){
-      var data ={
-          source_id : $scope.frm.token_id,
-          method:'card',
-          amount : $scope.frm.amount,
-          description : $scope.frm.description,
-          device_session_id : deviceSessionId,
-          customer:{
-            name: $scope.frm.name,
-            last_name: $scope.frm.last_name,
-            phone_number: $scope.frm.phone_number,
-            email : $scope.frm.email,
-            holder_name : $scope.frm.holder_name,
-            card_number : $scope.frm.card_number,
-            expiration_year : $scope.frm.expiration_year,
-            expiration_month : $scope.frm.expiration_month          
-          }
-        }
-
-        $scope.comprarClick = function(){
-          $state.go("app.comprar")
-        }
 
       //Al dar click en el buton submit, realiza el "tokenize de la tarjeta"
       //Creacion del token
@@ -48,8 +31,21 @@
         $("#deviceIdHiddenFieldName").val(deviceSessionId);
         console.log("Operacion exitosa, se genero el token " +  token_id);
         console.log("Se genero el siguiente token : " + token_id);
+        var data ={
+            source_id : token_id,
+            method:'card',
+            amount : $scope.frm.amount,
+            description : $scope.frm.description,
+            device_session_id : deviceSessionId,
+            customer:{
+              name: $scope.frm.name,
+              last_name: $scope.frm.last_name,
+              phone_number: $scope.frm.phone_number,
+              email : $scope.frm.email,
+              order_id : "oid-00721"
+            }
+          }        
         $('#payment-form').submit("asdsad");
-
 
         $http.post(url,data).
           success(function(data, status) {
