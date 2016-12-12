@@ -10,11 +10,8 @@
     var url = chargesUrl.url
 
     $scope.comprarClick = function(){
-        $state.go("app.comprar")
-      }
-
-    //Redirige al formulario de captura de tarjeta
-    $scope.envioDatos = function(frm){
+      $state.go("app.comprar")
+    }
 
       //Al dar click en el buton submit, realiza el "tokenize de la tarjeta"
       //Creacion del token
@@ -29,8 +26,8 @@
         var token_id = response.data.id;
         $("#token_id").val(token_id);
         $("#deviceIdHiddenFieldName").val(deviceSessionId);
-        console.log("Operacion exitosa, se genero el token " +  token_id);
-        console.log("Se genero el siguiente token : " + token_id);
+        //console.log("Operacion exitosa, se genero el token " +  token_id);
+        //console.log("Se genero el siguiente token : " + token_id);
         var data ={
             source_id : token_id,
             method:'card',
@@ -50,12 +47,23 @@
         $http.post(url,data).
           success(function(data, status) {
             if (status === 200){
+              var alertPop = $ionicPopup.alert({
+                title:"Success",
+                template:"El pago ha sido recibido con exito"
+              })
+              $state.go("app.cafe")
               console.log("La informacion ha sido enviada correctamente al server "+ status)
               console.log(data)            
             }
           }).error(function(error){
+            var alertPop = $ionicPopup.alert({
+              title:"Error",
+              template:"Ha ocurrido el siguiente error: " + error
+            })
               console.log("Ocurrio un error al mandar la peticion al server" + error);
-          });        
+          });
+
+          console.log(localStorage.setItem("data",data))        
       };
 
       //calback de error
@@ -68,12 +76,11 @@
         $("#pay-button").prop("disabled",false);
       };
 
-    };
-
   }])
 
   //Controlador de datos
   .controller("DataCtrl", ["database","$scope","$ionicPopup", function(database,$scope,$ionicPopup){
+
    var route = "data";
    var cafe = "cafe";
    var frios = "frios";
