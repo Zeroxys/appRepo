@@ -142,8 +142,8 @@
 
   //Controllador del registro de usuarios en firebase
   .controller("AuthCtrl", ["$scope","Auth","$location","$ionicPopup","$timeout","$ionicModal", function($scope,Auth,$location,$ionicPopup,$timeout,$ionicModal){
-    $scope.user = {};
-    $scope.mail = {};
+    /*$scope.user = {};
+    $scope.mail = {};*/
 
     //Metodo de registro de usuarios
     $scope.registro = function(user){
@@ -209,8 +209,9 @@
 
       }else
       {
-        Auth.loginUser(user)
         //Usuario registrado con exito
+        Auth.loginUser(user)
+
         .then(function (authUser){
           user.email ="";
           user.password ="";
@@ -223,10 +224,11 @@
           );
 
           Auth.listener(function(firebaseUser){
-            console.log(firebaseUser.email)
+            if (firebaseUser){
+              $location.path("app/cafe");
+              $scope.modal2.hide();
+            }
           })
-          $location.path("app/cafe");
-          $scope.modal2.hide();
         })
 
         //codigo de error
