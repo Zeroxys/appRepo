@@ -2,7 +2,7 @@
 	angular.module('starter', ['ionic', 'starter.controllers',"starter.states","starter.services"])
 
   .constant('chargesUrl', {
-    url: 'http://localhost:8080/charges'
+    url: 'https://shabbatcoffee.herokuapp.com/charges'
   })
 
 	.run(function($ionicPlatform) {
