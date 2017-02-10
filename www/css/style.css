@@ -71,10 +71,10 @@
 /*-----------------Login css-------------------------------------------------------*/
 
 .login-container {
-    display: -webkit-flex;
-    -webkit-flex-direction: column;
-    height: 100%;
-  background-image:url("http://img.wallpaperfolder.com/f/529F88EFECBB/top-10-best-coffee-effective-design.jpg");
+  display: -webkit-flex;
+  -webkit-flex-direction: column;
+  height: 100%;
+  background-image:url("https://firebasestorage.googleapis.com/v0/b/shabbatcoffe.appspot.com/o/landing.jpg?alt=media&token=384779e1-bf6f-49c1-88d8-e9043bb070c7");
   background-color: #lightgrey;
   background-size: cover;
 }

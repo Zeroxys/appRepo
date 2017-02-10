@@ -145,6 +145,31 @@
     /*$scope.user = {};
     $scope.mail = {};*/
 
+    //Metodo de logueo facebook;
+    $scope.facebookLogin = function(){
+
+      if (!firebase.auth().currentUser){
+
+        var provider = new firebase.auth.FacebookAuthProvider();
+        provider.addScope('public_profile');
+        firebase.auth().signInWithPopup(provider).then(function(result) {
+        // This gives you a Facebook Access Token.
+        var token = result.credential.accessToken;
+        // The signed-in user info.
+        var user = result.user;
+
+        var name = user.name
+
+        }).catch(function (err) {
+          console.log(err.code)
+        });
+
+      }else{
+        firebase.auth().signOut();
+      }
+    }
+
+
     //Metodo de registro de usuarios
     $scope.registro = function(user){
 

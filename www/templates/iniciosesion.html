@@ -1,14 +1,14 @@
 		<ion-view>
 		    <ion-content scroll="false">
 
-		        <section class="login-container">
+		        <section class="login-container" ng-controller="AuthCtrl">
 
 		            <div class = "col header text-center">
 		               <img src="./img/ionic.png" class = "logo full-image" />
 		            </div>
 		            <br>
 		            <div class = "col button-row text-center">
-		               <img src="./img/facebook-button.png"/>
+		               <img src="./img/facebook-button.png" ng-click="facebookLogin()" />
 		            </div>
 		            <div class = "col button-row text-center">
 		               <img src="./img/email-button.png" ng-click="seleccion(2)" />
