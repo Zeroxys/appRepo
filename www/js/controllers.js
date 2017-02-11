@@ -148,27 +148,41 @@
     //Metodo de logueo facebook;
     $scope.facebookLogin = function(){
 
-      if (!firebase.auth().currentUser){
+        var user = firebase.auth().currentUser;
 
-        var provider = new firebase.auth.FacebookAuthProvider();
-        provider.addScope('public_profile');
-        firebase.auth().signInWithPopup(provider).then(function(result) {
-        // This gives you a Facebook Access Token.
-        var token = result.credential.accessToken;
-        // The signed-in user info.
-        var user = result.user;
+          if (!user){
+            var provider = new firebase.auth.FacebookAuthProvider()
+            provider.addScope("public_profile")
+            firebase.auth().signInWithPopup(provider)
+              .then(function (result) {
+                var user = result.user;
+                var name = user.displayName;
+                var picture = user.photoURL
 
-        var name = user.name
+                console.log(user.displayName, picture);          
+              })
+              .catch(function (err) {
+                console.log(err.code);
+              })
+          }else{
+            $location.path("app/cafe");
+          }
 
-        }).catch(function (err) {
-          console.log(err.code)
-        });
 
-      }else{
-        firebase.auth().signOut();
-      }
     }
 
+
+  //Metodo para cerrar la sesion activa
+  $scope.cerrarSesion = function(){
+    Auth.cerrarSesion()
+      .then(function(){
+        $location.path("/login");
+        console.log("El usuario ha cerrado sesion");
+      })
+      .catch(function (err){
+        console.log("Ha ocurrido el siguiente error : " + err);
+      });
+  }
 
     //Metodo de registro de usuarios
     $scope.registro = function(user){
@@ -303,16 +317,6 @@
         });
       })
     }
-
-
-  //Metodo para cerrar la sesion activa
-  $scope.cerrarSesion = function(firebaseUser){
-    Auth.cerrarSesion()
-    .then(function(){
-      $location.path("/login");
-      console.log("El usuario ha cerrado sesion");
-    });
-  }
 
   }])
 
