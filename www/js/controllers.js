@@ -155,11 +155,12 @@
             provider.addScope("public_profile")
             firebase.auth().signInWithPopup(provider)
               .then(function (result) {
-                var user = result.user;
-                var name = user.displayName;
-                var picture = user.photoURL
 
-                console.log(user.displayName, picture);          
+                   var user = result.user
+                   var name = user.displayName
+                   var picture =  user.photoURL
+
+                console.log(name,picture);          
               })
               .catch(function (err) {
                 console.log(err.code);
